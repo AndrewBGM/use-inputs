@@ -1,3 +1,3 @@
-export const useFields = (): string => {
+export const useInputs = (): string => {
   return ''
 }

@@ -1,7 +1,7 @@
-import { useFields } from '.'
+import { useInputs } from '.'
 
 describe('useInputs', () => {
   it('should return a string', () => {
-    expect(useFields()).toBe('')
+    expect(useInputs()).toBe('')
   })
 })
