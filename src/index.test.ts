@@ -10,22 +10,22 @@ describe('useInputs', () => {
       })
     )
 
-    expect(result.current.test.id).not.toBeFalsy()
-    expect(result.current.test.initialValue).toBe('foo')
-    expect(result.current.test.name).toBe('test')
-    expect(result.current.test.value).toBe('foo')
+    expect(result.current[0].test.id).not.toBeFalsy()
+    expect(result.current[0].test.initialValue).toBe('foo')
+    expect(result.current[0].test.name).toBe('test')
+    expect(result.current[0].test.value).toBe('foo')
 
     act(() => {
-      result.current.test.update('bar')
+      result.current[0].test.update('bar')
     })
 
-    expect(result.current.test.value).toBe('bar')
+    expect(result.current[0].test.value).toBe('bar')
 
     act(() => {
-      result.current.test.reset()
+      result.current[0].test.reset()
     })
 
-    expect(result.current.test.value).toBe('foo')
+    expect(result.current[0].test.value).toBe('foo')
   })
 
   it('should support number values', () => {
@@ -35,22 +35,22 @@ describe('useInputs', () => {
       })
     )
 
-    expect(result.current.test.id).not.toBeFalsy()
-    expect(result.current.test.initialValue).toBe(1)
-    expect(result.current.test.name).toBe('test')
-    expect(result.current.test.value).toBe(1)
+    expect(result.current[0].test.id).not.toBeFalsy()
+    expect(result.current[0].test.initialValue).toBe(1)
+    expect(result.current[0].test.name).toBe('test')
+    expect(result.current[0].test.value).toBe(1)
 
     act(() => {
-      result.current.test.update(2)
+      result.current[0].test.update(2)
     })
 
-    expect(result.current.test.value).toBe(2)
+    expect(result.current[0].test.value).toBe(2)
 
     act(() => {
-      result.current.test.reset()
+      result.current[0].test.reset()
     })
 
-    expect(result.current.test.value).toBe(1)
+    expect(result.current[0].test.value).toBe(1)
   })
 
   it('should support boolean values', () => {
@@ -60,22 +60,50 @@ describe('useInputs', () => {
       })
     )
 
-    expect(result.current.test.id).not.toBeFalsy()
-    expect(result.current.test.initialValue).toBe(false)
-    expect(result.current.test.name).toBe('test')
-    expect(result.current.test.value).toBe(false)
+    expect(result.current[0].test.id).not.toBeFalsy()
+    expect(result.current[0].test.initialValue).toBe(false)
+    expect(result.current[0].test.name).toBe('test')
+    expect(result.current[0].test.value).toBe(false)
 
     act(() => {
-      result.current.test.update(true)
+      result.current[0].test.update(true)
     })
 
-    expect(result.current.test.value).toBe(true)
+    expect(result.current[0].test.value).toBe(true)
 
     act(() => {
-      result.current.test.reset()
+      result.current[0].test.reset()
     })
 
-    expect(result.current.test.value).toBe(false)
+    expect(result.current[0].test.value).toBe(false)
+  })
+
+  it('should support resetting multiple values', () => {
+    const { result } = renderHook(() =>
+      useInputs({
+        str: 'foo',
+        num: 1,
+        bool: false,
+      })
+    )
+
+    act(() => {
+      result.current[0].str.update('bar')
+      result.current[0].num.update(2)
+      result.current[0].bool.update(true)
+    })
+
+    expect(result.current[0].str.value).toBe('bar')
+    expect(result.current[0].num.value).toBe(2)
+    expect(result.current[0].bool.value).toBe(true)
+
+    act(() => {
+      result.current[1].reset()
+    })
+
+    expect(result.current[0].str.value).toBe('foo')
+    expect(result.current[0].num.value).toBe(1)
+    expect(result.current[0].bool.value).toBe(false)
   })
 })
 

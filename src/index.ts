@@ -1,4 +1,9 @@
-import { DetailedHTMLProps, InputHTMLAttributes, useReducer } from 'react'
+import {
+  DetailedHTMLProps,
+  InputHTMLAttributes,
+  useReducer,
+  useState,
+} from 'react'
 import { buildDescriptorPartial } from './build-descriptor-partial'
 import reducer, { resetInput, updateInput } from './reducer'
 
@@ -23,6 +28,10 @@ export type InputDescriptors<
   [TKey in keyof TOptions]: InputDescriptor<ValueWrapper<TOptions[TKey]>>
 }
 
+export interface InputMethods {
+  reset: () => void
+}
+
 export interface InputOptions<TValue extends InputValue = InputValue> {
   [name: string]: TValue
 }
@@ -34,10 +43,12 @@ export const useInputs = <
   TValue extends InputValue = InputValue
 >(
   options: TOptions
-): InputDescriptors<TOptions, TValue> => {
+): [InputDescriptors<TOptions, TValue>, InputMethods] => {
+  const [opt] = useState(() => options)
+
   const [descriptors, dispatch] = useReducer(reducer, undefined, () =>
-    Object.keys(options).reduce((current, key) => {
-      const partial = buildDescriptorPartial(key, options[key])
+    Object.keys(opt).reduce((current, key) => {
+      const partial = buildDescriptorPartial(key, opt[key])
       const reset = (): void => dispatch(resetInput(key))
       const update = (value: InputValue): void =>
         dispatch(updateInput(key, value))
@@ -53,7 +64,21 @@ export const useInputs = <
     }, {})
   )
 
-  return descriptors
+  const reset = (): void => {
+    Object.keys(opt).forEach(key =>
+      dispatch({
+        type: 'reset',
+        key,
+      })
+    )
+  }
+
+  return [
+    descriptors,
+    {
+      reset,
+    },
+  ]
 }
 
 export const wrapInput = (
