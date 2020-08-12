@@ -42,7 +42,7 @@ const Form = () => {
       <label htmlFor={email.id}>Email address</label>
       <input type='email' {...wrapInput(email)} />
       <label htmlFor={displayName.id}>Display Name</label>
-      <input type='displayName' {...wrapInput(displayName)} />
+      <input type='text' {...wrapInput(displayName)} />
       <button type='button' onClick={handleSubmit}>
         Submit
       </button>
