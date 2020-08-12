@@ -3,4 +3,4 @@ dist
 node_modules
 
 jest.config.js
-webpack.config.js
+rollup.config.js

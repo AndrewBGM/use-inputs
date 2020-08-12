@@ -2,11 +2,13 @@
   "name": "@andrewbgm/use-inputs",
   "version": "1.0.0",
   "description": "React hook for working with HTML input elements",
+  "types": "dist/index.d.ts",
   "main": "dist/index.js",
   "scripts": {
     "prettier": "prettier . --write",
     "eslint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "jest": "jest"
+    "jest": "jest",
+    "build": "rollup -c"
   },
   "husky": {
     "hooks": {
@@ -46,6 +48,10 @@
     "jest": "^26.3.0",
     "prettier": "^2.0.5",
     "react-test-renderer": "^16.13.1",
+    "rollup": "^2.23.1",
+    "rollup-plugin-delete": "^2.0.0",
+    "rollup-plugin-dts": "^1.4.10",
+    "rollup-plugin-typescript2": "^0.27.2",
     "ts-jest": "^26.2.0",
     "typescript": "^3.9.7"
   }
