@@ -8,6 +8,11 @@
     "eslint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "jest": "jest"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run prettier && npm run eslint && npm run jest"
+    }
+  },
   "repository": "https://github.com/AndrewBGM/use-inputs",
   "author": "Andrew Bennett <andrewbgm@gmail.com>",
   "license": "MIT",
@@ -37,6 +42,7 @@
     "eslint-plugin-react": "^7.20.5",
     "eslint-plugin-react-hooks": "^4.0.8",
     "eslint-plugin-testing-library": "^3.6.0",
+    "husky": "^4.2.5",
     "jest": "^26.3.0",
     "prettier": "^2.0.5",
     "react-test-renderer": "^16.13.1",
