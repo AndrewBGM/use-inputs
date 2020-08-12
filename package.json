@@ -1,0 +1,20 @@
+{
+  "name": "@andrewbgm/use-inputs",
+  "version": "1.0.0",
+  "description": "React hook for working with HTML input elements",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "https://github.com/AndrewBGM/use-inputs",
+  "author": "Andrew Bennett <andrewbgm@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AndrewBGM/use-inputs/issues"
+  },
+  "homepage": "https://github.com/AndrewBGM/use-inputs#readme",
+  "devDependencies": {
+    "prettier": "^2.0.5",
+    "typescript": "^3.9.7"
+  }
+}
