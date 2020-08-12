@@ -1,4 +1,4 @@
-import { InputDescriptors, InputsOptions, InputValue } from '.'
+import { InputDescriptors, InputOptions, InputValue } from '.'
 
 export interface ResetAction {
   type: 'reset'
@@ -26,7 +26,7 @@ export const updateInput = (key: string, value: InputValue): UpdateAction => ({
 
 export default <
   TDescriptors extends InputDescriptors<TOptions, TValue>,
-  TOptions extends InputsOptions<TValue>,
+  TOptions extends InputOptions<TValue>,
   TValue extends InputValue
 >(
   state: TDescriptors,

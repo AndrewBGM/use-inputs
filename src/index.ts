@@ -19,20 +19,20 @@ export interface InputDescriptor<TValue extends InputValue> {
 }
 
 export type InputDescriptors<
-  TOptions extends InputsOptions<TValue>,
+  TOptions extends InputOptions<TValue>,
   TValue extends InputValue
 > = {
   [TKey in keyof TOptions]: InputDescriptor<ValueWrapper<TOptions[TKey]>>
 }
 
-export interface InputsOptions<TValue extends InputValue> {
+export interface InputOptions<TValue extends InputValue> {
   [name: string]: TValue
 }
 
 export type InputValue = string | number | boolean
 
 export const useInputs = <
-  TOptions extends InputsOptions<TValue>,
+  TOptions extends InputOptions<TValue>,
   TValue extends InputValue
 >(
   options: TOptions
