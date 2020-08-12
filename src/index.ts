@@ -2,13 +2,11 @@ import { DetailedHTMLProps, InputHTMLAttributes, useReducer } from 'react'
 import { buildDescriptorPartial } from './build-descriptor-partial'
 import reducer, { resetInput, updateInput } from './reducer'
 
-type ValueWrapper<TValue extends InputValue> = TValue extends boolean
-  ? boolean
-  : TValue extends string
-  ? string
-  : number
+type ValueWrapper<
+  TValue extends InputValue = InputValue
+> = TValue extends boolean ? boolean : TValue extends string ? string : number
 
-export interface InputDescriptor<TValue extends InputValue> {
+export interface InputDescriptor<TValue extends InputValue = InputValue> {
   id: string
   initialValue: TValue
   name: string
@@ -20,12 +18,12 @@ export interface InputDescriptor<TValue extends InputValue> {
 
 export type InputDescriptors<
   TOptions extends InputOptions<TValue>,
-  TValue extends InputValue
+  TValue extends InputValue = InputValue
 > = {
   [TKey in keyof TOptions]: InputDescriptor<ValueWrapper<TOptions[TKey]>>
 }
 
-export interface InputOptions<TValue extends InputValue> {
+export interface InputOptions<TValue extends InputValue = InputValue> {
   [name: string]: TValue
 }
 
@@ -33,7 +31,7 @@ export type InputValue = string | number | boolean
 
 export const useInputs = <
   TOptions extends InputOptions<TValue>,
-  TValue extends InputValue
+  TValue extends InputValue = InputValue
 >(
   options: TOptions
 ): InputDescriptors<TOptions, TValue> => {

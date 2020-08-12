@@ -27,7 +27,7 @@ export const updateInput = (key: string, value: InputValue): UpdateAction => ({
 export default <
   TDescriptors extends InputDescriptors<TOptions, TValue>,
   TOptions extends InputOptions<TValue>,
-  TValue extends InputValue
+  TValue extends InputValue = InputValue
 >(
   state: TDescriptors,
   action: ReducerAction
